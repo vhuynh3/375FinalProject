@@ -17,61 +17,62 @@ public class MinimaxPlayer extends Player {
         
         int curIdx;
         int curVal;
-        ArrayList<Integer> emptyCopy = new ArrayList<>(board.empty);
 
         //find best move by going through all empty spaces
         for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
-            if (board.board[i].equals(" ")){
-                board.addMark(mark, i);
-                curVal = minimax(board, 10);
+            if (board.board[i].equals(" ")){ //If space is empty
+                board.addMark(mark, i); //place a mark there
+                curVal = minimax(board, 20); //calculate the value of the board
                 
                 if ((type == MIN_PLAY && curVal < bestVal) || (type == MAX_PLAY && curVal > bestVal)) {
-                    bestVal = curVal;
-                    bestMove = i;
+                    bestVal = curVal; //store the value if it is better
+                    bestMove = i; //store the move if it is better
                 }
-                board.remMark(i);
+                board.remMark(i); //remove the mark
             }
         }
 
-        board.addMark(mark, bestMove);
+        board.addMark(mark, bestMove); //place the best move
         return bestMove;
     }
 
     public int minimax(Board board, int depth) {
         int value = board.boardValue();
-        if (depth == 0 || value != 0) {
-            return value;
+        if (depth == 0 || value != 0) { //if depth has been reached or someone has won
+            return value + depth; //return the value of the board + the depth left if there is any
         }
-        if (board.empty.size() == 0) {
+        if (board.empty.size() == 0) { //board is full, a tie
             return 0;
         }
 
         int bestVal;
         if (type == MAX_PLAY) { //maximizing player
             bestVal = -100000; //arbitrary small number
-            for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
-                if (board.board[i].equals(" ")) {
-                    board.addMark(mark, i);
+            for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {  //go through entire board
+                if (board.board[i].equals(" ")) { //if space is empty
+                    board.addMark(mark, i); // place mark
 
-                    bestVal = Math.max(bestVal, minimax(board, depth - 1));
+                    //call minimax on next move and replace bestVal if the minimax returns a greater value
+                    bestVal = Math.max(bestVal, minimax(board, depth - 1)); 
 
-                    board.remMark(i);
+                    board.remMark(i); //remove mark
                 }
             }
             return bestVal;
         } 
         else { //minimizing player
             bestVal = 100000;
-            for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
-                if (board.board[i].equals(" ")) {
-                    board.addMark(mark, i);
+            for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) { //go through entire board
+                if (board.board[i].equals(" ")) { //if space is empty
+                    board.addMark(mark, i); // place mark
 
-                    bestVal = Math.min(bestVal, minimax(board, depth - 1));
+                    //call minimax on next move and replace bestVal if the minimax returns a smaller value
+                    bestVal = Math.min(bestVal, minimax(board, depth - 1)); 
 
-                    board.remMark(i);
+                    board.remMark(i); //remove mark
                 }
             }
+            return bestVal;
         }
-        return 0;
     }
 }
