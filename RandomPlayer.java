@@ -7,7 +7,10 @@ public class RandomPlayer extends Player {
     }
 
     public int play(Board board){ //choose random place to play
-        int rand = (int)(Math.random()) * board.empty.size();
-        return board.empty.get(rand);
+        Random rand = new Random();
+        int idx = rand.nextInt(board.empty.size());
+        idx = board.empty.get(idx);
+        board.addMark(mark, idx);
+        return idx;
     }
 }

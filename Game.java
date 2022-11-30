@@ -59,7 +59,14 @@ public class Game{
 
     public void nextTurn() {
         Player curPlayer = players.get(turn);
-        int move = curPlayer.play(board);
+        curPlayer.play(board);
         turn = (turn + 1) % 2; //swap turns
+    }
+
+    public int playGame() {
+        while (board.boardValue() == 0 && board.empty.size() != 0) {
+            nextTurn();
+        }
+        return board.boardValue();
     }
 }
