@@ -20,7 +20,7 @@ public class Program {
     public static void main(String[] args) {
         //java Program RANDOM RANDOM 100 output.txt
 
-        if (args.length < 2) {
+        if (args.length != 4) {
             System.out.println(usage);
             System.exit(0);
         }
@@ -45,11 +45,10 @@ public class Program {
 
         int numGames = 100; //default 100
         try {
-            numGames = Integer.parseInt(args[2]);
+            numGames = Integer.parseInt(args[2]);   
         } catch(NumberFormatException e) {
             System.out.println("Invalid number of games. Using 100 as default.");
         }
-
 
         Game game;
         int result;
