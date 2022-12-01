@@ -57,6 +57,7 @@ public class Program {
         int p2wins = 0; //max player
         int tie = 0;
 
+        long timeStart = System.currentTimeMillis();
         for (int i = 0; i < numGames; i++) {
             game = new Game(p1, p2);
             result = game.playGame();
@@ -68,7 +69,7 @@ public class Program {
                 tie ++;
             }
         }
-
+        long timeEnd = System.currentTimeMillis();
         float p1Rate = p1wins * 100/numGames ;
         float p2Rate = p2wins* 100/numGames;
         float tieRate = tie* 100/numGames;
@@ -81,8 +82,8 @@ public class Program {
             
             w.write("player 1 wins: " + p1Rate + "%\n");
             w.write("player 2 wins: " + p2Rate + "%\n");
-            w.write("ties: " + tieRate + "%");
-
+            w.write("ties: " + tieRate + "%\n");
+            w.write("total time for all the games calculated: " + (timeEnd - timeStart) + " ms");
             w.close();
         } catch (IOException e) {
             System.out.println("Could not open " + args[3] + ". Try again.");
