@@ -92,8 +92,8 @@ public class Board {
             }
         }
 
-        if (winner.equals(X)) {return 10;}
-        if (winner.equals(O)) {return -10;}
+        if (winner.equals(X)) {return 100;}
+        if (winner.equals(O)) {return -100;}
         return 0;
     }
 }
