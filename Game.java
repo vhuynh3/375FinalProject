@@ -14,7 +14,7 @@ public class Game{
     public static final int RANDOM = 0;
     public static final int MINIMAX = 1;
     public static final int ALPHABETA = 2;
-    public static final int ITER = 3;
+    public static final int MEM = 3;
 
     Board board;
     HashMap<Integer, Player> players;
@@ -35,8 +35,8 @@ public class Game{
             case ALPHABETA:
                 players.put(0, new ABPlayer(O, MIN_PLAY)); 
                 break;
-            case ITER:
-                players.put(0, new IterPlayer(O, MIN_PLAY)); 
+            case MEM:
+                players.put(0, new MemPlayer(O, MIN_PLAY)); 
                 break;
         }
         switch (t2) { //"X", maximizing player
@@ -49,8 +49,8 @@ public class Game{
             case ALPHABETA:
                 players.put(1, new ABPlayer(X, MAX_PLAY)); 
                 break;
-            case ITER:
-                players.put(1, new IterPlayer(X, MAX_PLAY)); 
+            case MEM:
+                players.put(1, new MemPlayer(X, MAX_PLAY)); 
                 break;
         }
 
@@ -66,6 +66,7 @@ public class Game{
     public int playGame() {
         while (board.boardValue() == 0 && board.empty.size() != 0) {
             nextTurn();
+            // System.out.println(board);
         }
         return board.boardValue();
     }

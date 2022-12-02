@@ -37,6 +37,18 @@ public class Board {
 
     }
 
+    public Board(Board b){
+        this.board = new String[9];
+        for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
+            this.board[i] = b.board[i];
+        }
+        this.empty = new ArrayList<Integer>();
+        for (int i = 0; i < b.empty.size(); i++) {
+            this.empty.add(b.empty.get(i));
+        }
+    }
+
+
     public String toString() { //print board
         String[] rows = new String[BOARD_SIZE];
         for (int r = 0; r < BOARD_SIZE; r ++) {
@@ -60,6 +72,10 @@ public class Board {
         empty.add(idx);
     }
 
+    public String boardString() {
+        return String.join("", board);
+    }
+    
     public int boardValue() {
         String winner = " ";
         //checking all rows
@@ -95,5 +111,18 @@ public class Board {
         if (winner.equals(X)) {return 100;}
         if (winner.equals(O)) {return -100;}
         return 0;
+    }
+
+    public boolean equals(Board b) {
+        if (b == this) {
+            return true;
+        }
+
+        for (int i = 0; i < board.length; i++) {
+            if (!(b.board[i]).equals(this.board[i])) {
+                return false;
+            }
+        }
+        return true;
     }
 }
