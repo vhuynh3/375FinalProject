@@ -24,7 +24,8 @@ public class MemPlayer extends Player {
         for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
             if (board.board[i].equals(" ")){ //If space is empty
                 board.addMark(mark, i); //place a mark there
-                if (mem.containsKey(board.boardString())) {
+
+                if (mem.containsKey(board.boardString())) { //check if board value has already been stored
                     curVal =  mem.get(board.boardString());
                 } else {
                     curVal = minimax(board, 0, (type + 1) % 2); //calculate the value of the board
@@ -47,7 +48,7 @@ public class MemPlayer extends Player {
 
 
    public int minimax(Board board, int depth, int minOrMax) {
-        if (mem.containsKey(board.boardString())) {
+        if (mem.containsKey(board.boardString())) { //check if current board state is has been stored already
             return mem.get(board.boardString());
         }
 
@@ -59,9 +60,6 @@ public class MemPlayer extends Player {
         if (board.empty.size() == 0) { //board is full, a tie
             return 0;
         }
-
-        //CODE HERE
-
 
         int bestVal;
         String copyboard;
@@ -75,7 +73,8 @@ public class MemPlayer extends Player {
                     int val = minimax(board, depth + 1, MIN_PLAY);
                     bestVal = Math.max(bestVal, val); 
                     copyboard = board.boardString();
-                    mem.put(copyboard, val);
+                    mem.put(copyboard, val); //store newly calculated board state and its value 
+
                     board.remMark(i); //remove mark
                 }
             }
@@ -92,7 +91,8 @@ public class MemPlayer extends Player {
                     int val = minimax(tempBoard, depth + 1, MAX_PLAY);
                     bestVal = Math.min(bestVal, val); 
                     copyboard = board.boardString();
-                    mem.put(copyboard, val);
+                    mem.put(copyboard, val); //store newly calculated board state and its value 
+
                     board.remMark(i); //remove mark
                 }
             }

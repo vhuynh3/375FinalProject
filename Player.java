@@ -13,11 +13,6 @@ public abstract class Player{
     public static final String X = "X";
     public static final String O = "O";
 
-    public static final int RANDOM = 0;
-    public static final int MINIMAX = 1;
-    public static final int ALPHABETA = 2;
-    public static final int ITER = 3;
-
     public Player(String mark, int type) {
         this.mark = mark;
         this.type = type;

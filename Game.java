@@ -6,8 +6,6 @@ public class Game{
     public static final int MAX_PLAY = 1;
     public static final int MIN_PLAY = 0;
 
-    public static final int BOARD_SIZE = 3;
-
     public static final String X = "X";
     public static final String O = "O";
 

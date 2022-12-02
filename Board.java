@@ -2,18 +2,10 @@ import java.util.*;
 import java.io.*;
 
 public class Board {
-    public static final int MAX_PLAY = 1;
-    public static final int MIN_PLAY = 0;
-
     public static final int BOARD_SIZE = 3;
 
     public static final String X = "X"; //max player
-    public static final String O = "O"; //min player
-
-    public static final int RANDOM = 0;
-    public static final int MINIMAX = 1;
-    public static final int ALPHABETA = 2;
-    public static final int ITER = 3;
+    public static final String O = "O"; //min player 
     
     String[] board; // 1 - X, 0 - O
     /*
