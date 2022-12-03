@@ -87,7 +87,7 @@ public class MemPlayer extends Player {
                     board.addMark(O, i); // place mark
 
                     //call minimax on next move and replace bestVal if the minimax returns a smaller value
-                    int val = minimax(tempBoard, depth + 1, MAX_PLAY);
+                    int val = minimax(board, depth + 1, MAX_PLAY);
                     bestVal = Math.min(bestVal, val); 
                     copyboard = board.boardString();
                     mem.put(copyboard, val); //store newly calculated board state and its value 
