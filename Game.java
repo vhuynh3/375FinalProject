@@ -13,6 +13,7 @@ public class Game{
     public static final int MINIMAX = 1;
     public static final int ALPHABETA = 2;
     public static final int MEM = 3;
+    public static final int USER = 4;
 
     Board board;
     HashMap<Integer, Player> players;
@@ -36,6 +37,9 @@ public class Game{
             case MEM:
                 players.put(0, new MemPlayer(O, MIN_PLAY)); 
                 break;
+            case USER:
+                players.put(0, new UserPlayer(O, MIN_PLAY)); 
+                break;
         }
         switch (t2) { //"X", maximizing player
             case RANDOM:
@@ -48,6 +52,9 @@ public class Game{
                 players.put(1, new ABPlayer(X, MAX_PLAY)); 
                 break;
             case MEM:
+                players.put(1, new MemPlayer(X, MAX_PLAY)); 
+                break;
+            case USER:
                 players.put(1, new MemPlayer(X, MAX_PLAY)); 
                 break;
         }
